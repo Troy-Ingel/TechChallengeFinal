@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+	<title>Tech Challenge Final</title>
+
+	<meta charset="UTF-8">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI"></script>
+
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-cookies.min.js"></script>
+	<script src="lib/angular-routes.min.js"></script>
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+
+	<meta name="viewport" content="initial-scale=1.0">
+	<meta charset="utf-8">
+</head>
+<body>
+
+	<div ng-view style="width: 100vw;height: 100vh"></div>
+
+	<!--  Main Angular Module -->
+	<script src="app/app.js"></script>
+	<script src="app/app.config.js"></script>
+	<script src="app/app.routes.js"></script>
+
+	<!-- Controllers -->
+	<script src="app/controllers/homeController.js"></script>
+
+	<!-- Services -->
+	<script src="app/services/geolocationFactory.js"></script>
+</body>
+</html>
