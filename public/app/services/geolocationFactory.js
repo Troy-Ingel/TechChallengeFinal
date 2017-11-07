@@ -2,10 +2,10 @@ angular
 	.module('mainApp')
 	.factory('GeoLocationFactory', GeoLocationFactory);
 
-GeoLocationFactory.$inject = ['$http'];
+GeoLocationFactory.$inject = [];
 
 // set up the services needed for this factory
-function GeoLocationFactory($http){
+function GeoLocationFactory(){
 
 	var service = {
 		getLocation: getLocation

@@ -2,9 +2,9 @@ angular
 .module('mainApp')
 .controller('homeController', homeController);
 
-homeController.$inject = ['GeoLocationFactory', '$scope'];
+homeController.$inject = ['GeoLocationFactory', 'GoogleMapsFactory', '$scope'];
 
-function homeController(GeoLocationFactory, $scope){
+function homeController(GeoLocationFactory, GoogleMapsFactory, $scope){
 
 	$scope.loading = false;
 
@@ -31,28 +31,12 @@ function homeController(GeoLocationFactory, $scope){
 				lng: pos.coords.longitude
 			};
 
-			map = new google.maps.Map(document.getElementById('map'), {
+			map = GoogleMapsFactory.createMap('map', {
 				zoom: 11,
 				center: myLatlng
 			});
 
-			var marker = new google.maps.Marker({
-				position: myLatlng,
-				map: map,
-				title: 'Click to zoom',
-				label: 'Me'
-			});
-
-			map.addListener('center_changed', function() {
-				window.setTimeout(function() {
-					map.panTo(marker.getPosition());
-				}, 3000);
-			});
-
-			marker.addListener('click', function() {
-				map.setZoom(11);
-				map.setCenter(marker.getPosition());
-			});
+			GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
 		});
 	}
 }
