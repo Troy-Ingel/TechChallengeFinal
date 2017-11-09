@@ -38,5 +38,6 @@ function homeController(GeoLocationFactory, GoogleMapsFactory, $scope){
 
 			GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
 		});
+
 	}
 }

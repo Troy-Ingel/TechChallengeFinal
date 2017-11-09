@@ -10,7 +10,8 @@ function GoogleMapsFactory(){
 	var service = {
 		createMap: createMap,
 		addMarker: addMarker,
-		addListener: addListener
+		addListener: addListener,
+		geocodeAddress: geocodeAddress
 	};
 
 	return service;
@@ -30,5 +31,16 @@ function GoogleMapsFactory(){
 	}
 	function addListener(map, event, callback){
 		map.addListener(event, callback);
+	}
+	function geocodeAddress(address, callback){
+		geocoder = new google.maps.Geocoder();
+
+        geocoder.geocode({'address': address}, function(results, status) {
+        	var location = results[0].geometry.location;
+        	callback({
+        		lat: location.lat(),
+        		lng: location.lng()
+        	});
+        });
 	}
 }
