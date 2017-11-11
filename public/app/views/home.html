@@ -1,15 +1,32 @@
 <style>
-	#map {
-		height: 100%;
+	.category{
+		padding: 70px 0;
+		border-radius: 10px;
+		cursor:pointer;
 	}
 </style>
 
-{{vm}}
-
-<div class="well" ng-show="loading">
-	<h1>Loading...</h1>
-</div>
-
-<div style="height: 600px; width: 800px">
-	<div id="map" ng-show="!loading"></div>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-3 text-center bg-primary category" ng-click="vm.goToPage('/map');">
+			<h2>Transport</h2>
+		</div>
+		<div class="col-lg-3 col-lg-offset-1 text-center bg-primary category" ng-click="vm.goToPage('/');">
+			<h2>Activities</h2>
+		</div>
+		<div class="col-lg-3 col-lg-offset-1 text-center bg-primary category" ng-click="vm.goToPage('/');">
+			<h2>Technology Guides</h2>
+		</div>
+	</div>
+	<div class="row" style="margin-top: 20px">
+		<div class="col-lg-3 text-center bg-primary category" ng-click="vm.goToPage('/');">
+			<h2>Reminders</h2>
+		</div>
+		<div class="col-lg-3 col-lg-offset-1 text-center bg-primary category" ng-click="vm.goToPage('/');">
+			<h2>TV Guide</h2>
+		</div>
+		<div class="col-lg-3 col-lg-offset-1 text-center bg-primary category" ng-click="vm.goToPage('/');">
+			<h2>Singles</h2>
+		</div>
+	</div>
 </div>

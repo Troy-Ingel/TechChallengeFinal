@@ -19,8 +19,8 @@
 	<meta charset="utf-8">
 </head>
 <body>
-
-	<div ng-view style="width: 100vw;height: 100vh"></div>
+	<div ng-include="'app/views/navigation.html'"></div>
+	<div ng-view></div>
 
 	<!--  Main Angular Module -->
 	<script src="app/app.js"></script>
@@ -29,6 +29,7 @@
 
 	<!-- Angular Controllers -->
 	<script src="app/controllers/homeController.js"></script>
+	<script src="app/controllers/mapController.js"></script>
 
 	<!-- Angular Services -->
 	<script src="app/services/geolocationFactory.js"></script>

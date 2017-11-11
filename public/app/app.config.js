@@ -1,6 +1,6 @@
 angular
-.module('mainApp')
-.config(configSettings);
+	.module('mainApp')
+	.config(configSettings);
 
 configSettings.$inject = ['$httpProvider'];
 
