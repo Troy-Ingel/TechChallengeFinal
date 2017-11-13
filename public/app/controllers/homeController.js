@@ -23,7 +23,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 
 	function activate(){
 		initMap();
-		reStyleMarkers();
 	}
 	function initMap() {
 		$scope.loading = true;
@@ -52,7 +51,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 			});
 
 			loadMarkers();
-			reStyleMarkers();
 
 			// $interval(updateMarkers, 30000);
 			// GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
@@ -68,7 +66,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 			return 'img/red_marker.png';
 		}
 	}
-
 	function getStatusText(status){
 		if(status == 'G'){
 			return 'Good';
@@ -79,7 +76,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 			return 'HELP ME';
 		}
 	}
-
 	function getCurrentPage(){
 		return $location.path();
 	}
@@ -154,7 +150,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 	function updateMarkers(){
 		clearMarkers();
 		loadMarkers();
-		reStyleMarkers();
 	}
 	function clearMarkers(){
 		for (var i = 0; i < markers.length; i++) {
@@ -162,18 +157,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 		}
 
 		markers = [];
-	}
-	function reStyleMarkers(){
-		var markerElemQry = '[style*="height: 100px; margin-top: -50px; margin-left: -50%; display: table; border-spacing: 0px;"]';
-		console.log($('#mapContainer').find(markerElemQry));
-		var markerElements = $(markerElemQry);
-
-		console.log(markerElements)
-		markerElements.each(function(i, e){
-
-			console.log(e);
-			$(e).css('margin-top', '-60px');
-		});
 	}
 	function addMarker(name, desc, lat, lon){
 		let initial = name.substring(0, 1).toUpperCase();
