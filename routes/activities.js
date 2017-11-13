@@ -24,7 +24,9 @@ router.get('/add', function(req, res){
 			activityName: 'Bingo',
 			date: '11/13/2017',
 			timeStart: 18,
-			timeEnd: 19
+			timeEnd: 19,
+			description: '',
+			agency: ''
 		};
 
 		db.collection("activities").insertOne(myobj, function(err, res) {
