@@ -1,5 +1,5 @@
 {
-  "name": "tech-challenge-final",
+  "name": "final-challenge",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -7,9 +7,19 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakecyr/TechChallengeFinal.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jakecyr/TechChallengeFinal/issues"
+  },
+  "homepage": "https://github.com/jakecyr/TechChallengeFinal#readme",
   "dependencies": {
-    "request": "^2.83.0"
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33",
+    "morgan": "^1.9.0"
   }
 }
