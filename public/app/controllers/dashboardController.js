@@ -2,11 +2,12 @@ angular
 	.module('mainApp')
 	.controller('dashboardController', dashboardController);
 
-dashboardController.$inject = ['$scope', 'ReminderFactory'];
+dashboardController.$inject = ['$scope', '$window', 'ReminderFactory'];
 
-function dashboardController($scope, ReminderFactory){
+function dashboardController($scope, $window, ReminderFactory){
 
 	$scope.data = {};
+	$scope.goToPage = goToPage;
 	$scope.addReminder = addReminder;
 	$scope.deleteReminder = deleteReminder;
 
@@ -16,6 +17,9 @@ function dashboardController($scope, ReminderFactory){
 
 	function activate(){
 		updateReminders();
+	}
+	function goToPage(page){
+		$window.location.href = page;
 	}
 	function updateReminders(){
 		$scope.reminders = ReminderFactory.get();

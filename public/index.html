@@ -17,34 +17,35 @@
 	<script src="lib/dirPagination.js"></script>
 	<script src="lib/jquery.min.js"></script>
 	<script src="lib/bootstrap.min.js"></script>
-</head>
-<body>
+
 
 	<style>
-	.category{
-		background-color: black;
-		color: white;
-		font-size: 30px;
-		text-align: center;
-		border-radius: 5px;
-		cursor: pointer;
-		padding: 50px 20px;
-	}
-</style>
+		.category{
+			background-color: black;
+			color: white;
+			font-size: 30px;
+			text-align: center;
+			border-radius: 5px;
+			cursor: pointer;
+			padding: 50px 20px;
+		}
+	</style>
+</head>
+<body>
+	<div ng-controller="dashboardController">
+		<div ng-include="'app/views/navigation.html'"></div>
 
-<div ng-controller="dashboardController">
-	<div ng-include="'app/views/navigation.html'"></div>
-
-	<div class="container">
-		<div class="row">
-			<div class="category col-lg-3">
-				Map
-			</div>
-			<div class="category col-lg-3 col-lg-offset-1">
-				Technology Guide
-			</div>
-			<div class="category col-lg-3 col-lg-offset-1">
-				Calendar
+		<div class="container">
+			<div class="row">
+				<div class="category col-lg-3" ng-click="goToPage('map.html')">
+					Map
+				</div>
+				<div class="category col-lg-3 col-lg-offset-1" ng-click="goToPage('tv-guide.html')">
+					TV Guide
+				</div>
+				<div class="category col-lg-3 col-lg-offset-1" ng-click="goToPage('cal.html')">
+					Calendar
+				</div>
 			</div>
 		</div>
 	</div>
