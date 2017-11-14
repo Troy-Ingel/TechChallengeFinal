@@ -1,0 +1,55 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span> 
+            </button>
+            <a class="navbar-brand" href="#">Senior Check</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="map.html">Activities</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Add Reminder
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <form class="container-fluid">
+                            <input ng-model="data.name" class="form-control" placeholder="Reminder name">
+                            <input ng-model="data.date" type="date" class="form-control" placeholder="Date">
+                            <button ng-click="addReminder()" ng-disabled="!data.date || !data.name" class="btn btn-primary">Add</button>
+                        </form>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        Reminders
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <div class="alert alert-warning" ng-show="!reminders || reminders.length == 0">
+                            <h4>No reminders added yet.</h4>
+                        </div>
+                        <table class="table" ng-show="reminders && reminders.length > 0">
+                            <tbody>
+                                <tr ng-repeat="reminder in reminders">
+                                    <td>
+                                        {{reminder.name}}
+                                    </td>
+                                    <td>
+                                        <a href="" ng-click="deleteReminder(reminder.name)" class="label label-success">Complete</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

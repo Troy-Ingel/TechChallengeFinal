@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+	<title>Senior Check</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-cookies.min.js"></script>
+	<script src="lib/angular-routes.min.js"></script>
+	<script src="lib/dirPagination.js"></script>
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI"></script>
+</head>
+<body>
+	<div ng-controller="homeController">
+		<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="mapContainer">
+				<div class="text-center" ng-show="loading">
+					<h1 id="loading-indicator">Loading map...</h1>
+				</div>
+				<div id="map" ng-show="!loading"></div>
+				<div ng-include="'app/views/map-legend.html'"></div>
+			</div>
+			<div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+				<ul class="nav nav-tabs">
+					<li ng-class="{'active': getCurrentPage() == '/'}"><a href="#!/">Add Activity</a></li>
+					<li ng-class="{'active': getCurrentPage() == '/places'}"><a href="#!places">Places</a></li>
+					<li ng-class="{'active': getCurrentPage() == '/activities'}"><a href="#!activities">Activities</a></li>
+				</ul>
+
+				<div ng-view></div>
+
+				<p id="footer">&copy; 2017 Senior Check</p>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Main Angular Module -->
+	<script src="app/app.js"></script>
+	<script src="app/app.config.js"></script>
+	<script src="app/app.routes.js"></script>
+
+	<!-- Controllers -->
+	<script src="app/controllers/homeController.js"></script>
+	<script src="app/controllers/entryController.js"></script>
+	<script src="app/controllers/directionsController.js"></script>
+	<script src="app/controllers/placesController.js"></script>
+	<script src="app/controllers/activityController.js"></script>
+
+	<!-- Services -->
+	<script src="app/services/googleMapsFactory.js"></script>
+	<script src="app/services/geolocationFactory.js"></script>
+	<script src="app/services/placeFactory.js"></script>
+	<script src="app/services/activityFactory.js"></script>
+</body>
+</html>

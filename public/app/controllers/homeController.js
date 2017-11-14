@@ -46,7 +46,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 				};
 
 				map = GoogleMapsFactory.createMap('map', {
-					zoom: 11,
+					zoom: 13,
 					center: myLatlng
 				});
 
@@ -74,7 +74,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 					};
 
 					map = GoogleMapsFactory.createMap('map', {
-						zoom: 11,
+						zoom: 13,
 						center: myLatlng
 					});
 
