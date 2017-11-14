@@ -45,7 +45,7 @@
 		</div>
 
 <!-- ng-disabled="!$parent.lat || !$parent.lon || !data.first_name || !data.last_name" -->
-		<button class="btn btn-primary mt20" ng-click="addActivity()">Set Status</button>
+		<button ng-disabled="!data.activityName || !data.address || !data.date || !data.startTime || !data.endTime" class="btn btn-primary mt20" ng-click="addActivity()">Set Status</button>
 	</div>
 
 	<button ng-show="statusSet && !updating" class="btn btn-default" ng-click="updating=true">Update Status</button>
