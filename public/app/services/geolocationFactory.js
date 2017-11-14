@@ -2,14 +2,15 @@ angular
 .module('mainApp')
 .factory('GeoLocationFactory', GeoLocationFactory);
 
-GeoLocationFactory.$inject = [];
+GeoLocationFactory.$inject = ['$http'];
 
 // set up the services needed for this factory
-function GeoLocationFactory(){
+function GeoLocationFactory($http){
 
 	var service = {
 		getLocation: getLocation,
-		calculateDistance: calculateDistance
+		calculateDistance: calculateDistance,
+		locate: locate
 	};
 
 	return service;
@@ -20,8 +21,15 @@ function GeoLocationFactory(){
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(callback);
 		} else {
-			return {};
+			return undefined;
 		}
+	}
+	function locate(){
+		var url = '/directions/locate'
+
+		return $http.get(url)
+			.then((res)=>res.data)
+			.catch((err)=>console.error(err));
 	}
 	function calculateDistance(latlng1, latlng2){
 		var R = 6371e3; // metres

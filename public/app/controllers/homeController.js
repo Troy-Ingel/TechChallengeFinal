@@ -28,30 +28,61 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 
 		GeoLocationFactory.getLocation(function(pos){
 
-			$scope.$apply(function(){
-				$scope.loading = false;
-			});
+			if(pos){
+				$scope.$apply(function(){
+					$scope.loading = false;
+				});
 
-			$scope.lat = pos.coords.latitude;
-			$scope.lon = pos.coords.longitude;
+				$scope.lat = pos.coords.latitude;
+				$scope.lon = pos.coords.longitude;
 
-			GoogleMapsFactory.reverseGeocode($scope.lat, $scope.lon).then(function(response){
-				$scope.currentAddress = response.results[0].formatted_address;
-			});
+				GoogleMapsFactory.reverseGeocode($scope.lat, $scope.lon).then(function(response){
+					$scope.currentAddress = response.results[0].formatted_address;
+				});
 
-			var myLatlng = {
-				lat: pos.coords.latitude,
-				lng: pos.coords.longitude
-			};
+				var myLatlng = {
+					lat: pos.coords.latitude,
+					lng: pos.coords.longitude
+				};
 
-			map = GoogleMapsFactory.createMap('map', {
-				zoom: 11,
-				center: myLatlng
-			});
+				map = GoogleMapsFactory.createMap('map', {
+					zoom: 11,
+					center: myLatlng
+				});
 
-			loadMarkers();
+				loadMarkers();
 
-			GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
+				GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
+			} else{
+				GeoLocationFactory.locate().then(function(response){
+					var location = response.location;
+					$scope.lat = location.lat;
+					$scope.lon = location.lng;
+
+
+					$scope.$apply(function(){
+						$scope.loading = false;
+					});
+
+					GoogleMapsFactory.reverseGeocode($scope.lat, $scope.lon).then(function(response){
+						$scope.currentAddress = response.results[0].formatted_address;
+					});
+
+					var myLatlng = {
+						lat: pos.coords.latitude,
+						lng: pos.coords.longitude
+					};
+
+					map = GoogleMapsFactory.createMap('map', {
+						zoom: 11,
+						center: myLatlng
+					});
+
+					loadMarkers();
+
+					GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
+				});
+			}
 		});
 	}
 	function getMarkerColor(status){

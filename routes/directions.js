@@ -2,6 +2,7 @@
 var express = require('express');
 var router = express.Router();
 const https = require('https');
+var request = require('request');
 
 const apiKey = 'AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI';
 
@@ -47,5 +48,11 @@ router.get('/', function(req, res){
 		res.json(err);
 	});
 })
+
+.get('/locate', function(req, res){
+	request.post('https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI', function(err, response, body){
+		res.json(JSON.parse(body));
+	});
+});
 
 module.exports = router;
