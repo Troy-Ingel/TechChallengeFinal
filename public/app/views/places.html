@@ -3,7 +3,7 @@
 
 	<table class="table">
 		<tbody>
-			<tr ng-repeat="center in centers" ng-show="center.agency">
+			<tr ng-repeat="center in $parent.places | orderBy: 'distance'" ng-show="center.agency && center.distance">
 				<td>{{center.agency}}</td>
 				<td>{{center.town_city}}</td>
 				<td>{{center.email}}</td>

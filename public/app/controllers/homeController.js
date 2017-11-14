@@ -114,9 +114,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 		// });
 
 		PlaceFactory.getCenters().then(function(response){
-			console.log(response)
 			for(var i = 0; i < response.length; i++){
-
 
 				var currentPlace = response[i];
 
@@ -126,7 +124,13 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 						lng: parseFloat(currentPlace.location_1.coordinates[0])
 					};
 
-					// console.log(position)
+					currentPlace.distance = GeoLocationFactory.calculateDistance({
+						lat: $scope.lat,
+						lon: $scope.lon
+					}, {
+						lat: position.lat,
+						lon: position.lng
+					});
 
 					var description = currentPlace.agency;
 					var marker = GoogleMapsFactory.addMarker(position, map, description, '', 'img/blue_marker.png');
@@ -151,8 +155,10 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 					markers.push(marker);
 				}
 			}
+
+			$scope.places = response;
 		})
-	}
+	};
 	function updateMarkers(){
 		clearMarkers();
 		loadMarkers();
