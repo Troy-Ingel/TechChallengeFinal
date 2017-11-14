@@ -48,7 +48,7 @@
 					<li ng-class="{'active': getCurrentPage() == '/activities'}"><a href="#!activities">Activities</a></li>
 				</ul>
 
-				<div ng-view></div>
+				<div ng-view ng-show="!isMobile || activePanel != PANELS.MAP)"></div>
 
 				<p id="footer">&copy; 2017 Senior Check</p>
 			</div>
