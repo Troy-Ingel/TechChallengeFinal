@@ -60,35 +60,35 @@ function GoogleMapsFactory($http){
 	//////// Transit ////////
 
 	function getTransitDirections(origin, destination){
-		var url = 'includes/ajax.php?directions=true&mode=transit&origin=' + origin + '&destination=' + destination;
+		var url = '/directions/?mode=transit&origin=' + origin + '&destination=' + destination;
 
 		return $http.get(url)
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
 	}
 	function getDirections(origin, destination, mode){
-		var url = 'includes/ajax.php?directions=true&mode=' + mode + '&origin=' + origin + '&destination=' + destination;
+		var url = '/directions?mode=' + mode + '&origin=' + origin + '&destination=' + destination;
 
 		return $http.get(url)
 			.then((res)=>res.data.routes)
 			.catch((err)=>console.error(err));
 	}
 	function getDrivingDirections(origin, destination){
-		var url = 'includes/ajax.php?directions=true&mode=driving&origin=' + origin + '&destination=' + destination;
+		var url = '/directions/?mode=driving&origin=' + origin + '&destination=' + destination;
 
 		return $http.get(url)
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
 	}
 	function getWalkingDirections(origin, destination){
-		var url = 'includes/ajax.php?directions=true&mode=walking&origin=' + origin + '&destination=' + destination;
+		var url = '/directions/?mode=walking&origin=' + origin + '&destination=' + destination;
 
 		return $http.get(url)
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
 	}
 	function reverseGeocode(lat, long){
-		var url = 'includes/ajax.php?reverse-geocode=true&latlng=' + lat.toString() + ',' + long.toString();
+		var url = '/directions/geocode?latlng=' + lat.toString() + ',' + long.toString();
 
 		return $http.get(url)
 			.then((res)=>res.data)

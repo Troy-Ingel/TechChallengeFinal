@@ -16,35 +16,6 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI"></script>
-
-	<style>
-		#map {
-			height: 100%;
-		}
-		#mapContainer{
-			height: 100vh;
-			border-right:1px solid #BCBCBC;
-			padding:0;
-			margin:0;
-		}
-		#loading-indicator{
-			margin-top: 300px;
-		}
-		#legend-container{
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			background-color: rgba(255,255,255,0.5);
-			border:1px solid black;
-			width: 27vw;
-		}
-		#footer{
-			position: fixed;
-			bottom: 0;
-			right: 10px;
-			color:gray;
-		}
-	</style>
 </head>
 <body>
 	<div ng-controller="homeController">
@@ -59,8 +30,8 @@
 			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 				<ul class="nav nav-tabs">
 					<li ng-class="{'active': getCurrentPage() == '/'}"><a href="#!/">Add Activity</a></li>
-					<li ng-class="{'active': getCurrentPage() == '/shelters'}"><a href="#!shelters">Places</a></li>
-					<li ng-class="{'active': getCurrentPage() == '/shelters'}"><a href="#!shelters">Activities</a></li>
+					<li ng-class="{'active': getCurrentPage() == '/places'}"><a href="#!places">Places</a></li>
+					<li ng-class="{'active': getCurrentPage() == '/activities'}"><a href="#!activities">Activities</a></li>
 				</ul>
 
 				<div ng-view></div>
@@ -78,14 +49,16 @@
 
 	<!-- Controllers -->
 	<script src="app/controllers/homeController.js"></script>
-	<script src="app/controllers/checkInController.js"></script>
+	<script src="app/controllers/entryController.js"></script>
 	<script src="app/controllers/directionsController.js"></script>
-	<script src="app/controllers/shelterController.js"></script>
+	<script src="app/controllers/placesController.js"></script>
+	<script src="app/controllers/activityController.js"></script>
 
 	<!-- Services -->
 	<script src="app/services/googleMapsFactory.js"></script>
 	<script src="app/services/geolocationFactory.js"></script>
 	<script src="app/services/checkInFactory.js"></script>
-	<script src="app/services/shelterFactory.js"></script>
+	<script src="app/services/placeFactory.js"></script>
+	<script src="app/services/activityFactory.js"></script>
 </body>
 </html>

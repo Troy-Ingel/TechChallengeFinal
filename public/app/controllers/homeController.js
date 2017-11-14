@@ -2,9 +2,9 @@ angular
 .module('mainApp')
 .controller('homeController', homeController);
 
-homeController.$inject = ['$window', '$location', '$scope', '$interval', 'GeoLocationFactory', 'GoogleMapsFactory', 'CheckInFactory', 'ShelterFactory'];
+homeController.$inject = ['$window', '$location', '$scope', '$interval', 'GeoLocationFactory', 'GoogleMapsFactory', 'CheckInFactory', 'PlaceFactory'];
 
-function homeController($window, $location, $scope, $interval, GeoLocationFactory, GoogleMapsFactory, CheckInFactory, ShelterFactory){
+function homeController($window, $location, $scope, $interval, GeoLocationFactory, GoogleMapsFactory, CheckInFactory, PlaceFactory){
 	
 	var map = undefined;
 	var markers = [];
@@ -52,8 +52,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 
 			loadMarkers();
 
-			// $interval(updateMarkers, 30000);
-			// GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
+			GoogleMapsFactory.addMarker(myLatlng, map, 'Title', 'Me');
 		});
 	}
 	function getMarkerColor(status){
@@ -80,70 +79,77 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 		return $location.path();
 	}
 	function loadMarkers(){
-		CheckInFactory.getPeople().then(function(response){
+		// CheckInFactory.getPeople().then(function(response){
 
-			people = response;
+		// 	people = response;
 
-			for(let i = 0; i < people.length; i++){
-				if(people[i]){
+		// 	for(let i = 0; i < people.length; i++){
+		// 		if(people[i]){
 
-					let curPerson = people[i];
+		// 			let curPerson = people[i];
 
-					let position = {
-						lat: parseFloat(curPerson.lat),
-						lng: parseFloat(curPerson.lon)
+		// 			let position = {
+		// 				lat: parseFloat(curPerson.lat),
+		// 				lng: parseFloat(curPerson.lon)
+		// 			};
+
+		// 			let status = curPerson.status;
+		// 			let description = curPerson.first_name + ' ' + curPerson.last_name + '\n' + 'Status: ' + getStatusText(curPerson.status);
+		// 			var marker = GoogleMapsFactory.addMarker(position, map, description, '', getMarkerColor(status));
+
+		// 			marker.addListener('click', function(){
+		// 				if(infowindow) infowindow.close();
+
+		// 				infowindow = new google.maps.InfoWindow({
+		// 					content: description
+		// 				});
+
+		// 				infowindow.open(map, this);
+		// 			});
+
+		// 			marker.personID = curPerson.id;
+		// 			markers.push(marker);
+		// 		}
+		// 	}
+		// });
+
+		PlaceFactory.getCenters().then(function(response){
+			console.log(response)
+			for(var i = 0; i < response.length; i++){
+
+
+				var currentPlace = response[i];
+
+				if(currentPlace.location_1){
+					var position = {
+						lat: parseFloat(currentPlace.location_1.coordinates[1]),
+						lng: parseFloat(currentPlace.location_1.coordinates[0])
 					};
 
-					let status = curPerson.status;
-					let description = curPerson.first_name + ' ' + curPerson.last_name + '\n' + 'Status: ' + getStatusText(curPerson.status);
-					var marker = GoogleMapsFactory.addMarker(position, map, description, '', getMarkerColor(status));
+					// console.log(position)
+
+					var description = currentPlace.agency;
+					var marker = GoogleMapsFactory.addMarker(position, map, description, '', 'img/blue_marker.png');
+
+					marker.place = currentPlace;
 
 					marker.addListener('click', function(){
 						if(infowindow) infowindow.close();
 
 						infowindow = new google.maps.InfoWindow({
-							content: description
+							content: this.place.agency
 						});
 
 						infowindow.open(map, this);
+
+						var place = this.place; 
+						$scope.destination = place.town_city + ', ' + place.st + ' ' + place.tel;
+						$location.path('/directions');
+						$scope.$apply();
 					});
 
-					marker.personID = curPerson.id;
 					markers.push(marker);
 				}
-			}
-		});
-
-		ShelterFactory.getShelters().then(function(response){
-			for(var i = 0; i < response.length; i++){
-
-				var currentShelter = response[i];
-
-				let position = {
-					lat: parseFloat(currentShelter.lat),
-					lng: parseFloat(currentShelter.lon)
-				};
-
-				let description = currentShelter.name;
-				var marker = GoogleMapsFactory.addMarker(position, map, description, '', 'img/blue_marker.png');
-
-				marker.shelter = currentShelter;
-
-				marker.addListener('click', function(){
-					if(infowindow) infowindow.close();
-
-					infowindow = new google.maps.InfoWindow({
-						content: description
-					});
-
-					infowindow.open(map, this);
-
-					$scope.destination = this.shelter.name + ', ' + this.shelter.address;
-					$location.path('/directions');
-					$scope.$apply();
-				});
-
-				markers.push(marker);
 			}
 		})
 	}

@@ -13,7 +13,7 @@ router.get('/create', function(req, res){
 	});
 })
 
-router.get('/add', function(req, res){
+router.post('/', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 		

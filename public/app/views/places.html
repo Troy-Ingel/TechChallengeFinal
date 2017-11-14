@@ -1,0 +1,16 @@
+<div style="padding: 0 20px">
+	<h2>Places</h2>
+
+	<table class="table">
+		<tbody>
+			<tr ng-repeat="center in centers" ng-show="center.agency">
+				<td>{{center.agency}}</td>
+				<td>{{center.town_city}}</td>
+				<td>{{center.email}}</td>
+				<td>
+					<button ng-disabled="center.onMap" class="btn btn-danger" ng-click="showDirections(center);center.onMap=true;">Go</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
