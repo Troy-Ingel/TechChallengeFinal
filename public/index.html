@@ -24,7 +24,7 @@
 <body>
 	<div ng-controller="homeController">
 		<!-- Only displayed on mobile devices -->
-		<div class="btn-group mb20" ng-show="mobile">
+		<div class="btn-group mb20" ng-show="isMobile">
 			<ul class="nav nav-tabs">
 				<li ng-class="{active: activePanel == PANELS.MAP}"><a ng-click="activePanel = PANELS.MAP" href="#!/">Map</a></li>
 				<li ng-class="{active: activePanel == PANELS.ENTRY}"><a ng-click="activePanel = PANELS.ENTRY" href="#!/">Add Activity</a></li>
@@ -33,7 +33,7 @@
 			</ul>
 		</div>
 
-		<div class="row" ng-show="!mobile || activePanel == PANELS.MAP">
+		<div class="row" ng-show="!isMobile || activePanel == PANELS.MAP">
 			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="mapContainer">
 				<div class="text-center" ng-show="loading">
 					<h1 id="loading-indicator">Loading map...</h1>
@@ -41,14 +41,14 @@
 				<div id="map" ng-show="!loading"></div>
 				<div ng-include="'app/views/map-legend.html'"></div>
 			</div>
-			<div class="col-lg-4 col-md-4" ng-show="!mobile">
+			<div class="col-lg-4 col-md-4" ng-show="!isMobile">
 				<ul class="nav nav-tabs">
 					<li ng-class="{'active': getCurrentPage() == '/'}"><a href="#!/">Add Activity</a></li>
 					<li ng-class="{'active': getCurrentPage() == '/places'}"><a href="#!places">Places</a></li>
 					<li ng-class="{'active': getCurrentPage() == '/activities'}"><a href="#!activities">Activities</a></li>
 				</ul>
 
-				<div ng-view ng-show="!mobile || activePanel != PANELS.MAP"></div>
+				<div ng-view ng-show="!isMobile || activePanel != PANELS.MAP"></div>
 
 				<p id="footer">&copy; 2017 Senior Check</p>
 			</div>
