@@ -25,7 +25,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 	$scope.initMap = initMap;
 	$scope.showDirections = showDirections;
 	$scope.updateMarkers = updateMarkers;
-	$scope.isMobile = false;
 
 	activate();
 
