@@ -8,6 +8,7 @@ var geocodeRouter = require('./routes/geocode');
 var placesRouter = require('./routes/places');
 var travelRouter = require('./routes/travel');
 var activitiesRouter = require('./routes/activities');
+var tvGuideRouter = require('./routes/tv-guide');
 
 var app = express();
 const port = process.env.PORT || 8080;
@@ -22,6 +23,7 @@ app
 	.use('/places', placesRouter)
 	.use('/travel', travelRouter)
 	.use('/activities', activitiesRouter)
+	.use('/tv-guide', tvGuideRouter)
 	.listen(port);
 
 /*

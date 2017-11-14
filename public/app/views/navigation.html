@@ -1,4 +1,18 @@
-<nav class="navbar navbar-inverse">
+<style>
+    .nav li a{
+        color: white !important; 
+    }
+    .navbar-brand{
+        color: white !important;
+    }
+    .navbar{
+        border-radius: 0;
+        background-color: #079FFC;
+        border: none;
+    }
+</style>
+
+<nav class="navbar navbar-inverse" style="">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -22,7 +36,7 @@
                         <form class="container-fluid">
                             <input ng-model="data.name" class="form-control" placeholder="Reminder name">
                             <input ng-model="data.date" type="date" class="form-control" placeholder="Date">
-                            <button ng-click="addReminder()" ng-disabled="!data.date || !data.name" class="btn btn-primary">Add</button>
+                            <button ng-click="addReminder()" ng-disabled="!data.date || !data.name" class="btn btn-primary" data-toggle="dropdown">Add</button>
                         </form>
                     </ul>
                 </li>

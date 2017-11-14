@@ -20,14 +20,39 @@
 </head>
 <body>
 
-	<div ng-controller="dashboardController">
+	<style>
+	.category{
+		background-color: black;
+		color: white;
+		font-size: 30px;
+		text-align: center;
+		border-radius: 5px;
+		cursor: pointer;
+		padding: 50px 20px;
+	}
+</style>
+
+<div ng-controller="dashboardController">
 	<div ng-include="'app/views/navigation.html'"></div>
+
+	<div class="container">
+		<div class="row">
+			<div class="category col-lg-3">
+				Map
+			</div>
+			<div class="category col-lg-3 col-lg-offset-1">
+				Technology Guide
+			</div>
+			<div class="category col-lg-3 col-lg-offset-1">
+				Calendar
+			</div>
+		</div>
 	</div>
 
 	<!-- Main Angular Module -->
 	<script src="app/app.js"></script>
 	<script src="app/app.config.js"></script>
-	
+
 	<!-- Controllers -->
 	<script src="app/controllers/dashboardController.js"></script>
 

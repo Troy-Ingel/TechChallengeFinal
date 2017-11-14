@@ -23,6 +23,7 @@ function directionsController($scope, GoogleMapsFactory){
 				$scope.directionsLoaded = true;
 				console.log("LEGS", response[0].legs);
 				$scope.$parent.showDirections(response[0].legs);
+				$scope.$parent.activePanel = $scope.PANELS.DIRECTIONS;
 			} else{
 				$scope.directions = [];
 			}
