@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+	<title>Technology Guides</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-cookies.min.js"></script>
+	<script src="lib/angular-routes.min.js"></script>
+	<script src="lib/dirPagination.js"></script>
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI"></script>
+</head>
+<body>
+	<div ng-controller="technologyGuidesController">
+		<div class="container">
+
+			<h2 class="page-header">
+				Technology Guides
+				<button ng-click="showPostEntry=!showPostEntry" class="btn btn-primary pull-right">Create Guide</button>
+			</h2>
+
+			<div ng-show="showPostEntry">
+				Add guide
+
+				<input placeholder="Title" class="form-control" ng-model="data.title">
+				<input placeholder="Author" class="form-control" ng-model="data.author">
+
+				Post Body:
+				<textarea class="form-control" rows="10" ng-model="data.body"></textarea>
+
+				<button ng-click="addPost()" class="btn btn-primary">Add Post</button>
+			</div>
+
+			<div ng-show="!showPostEntry">
+				<div ng-repeat="post in posts">
+					<h4>{{post.title}} <small>{{post.author}}</small></h4>
+					<p>{{post.body}}</p>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Angular Module -->
+	<script src="app/app.js"></script>
+	<script src="app/app.config.js"></script>
+
+	<!-- Controllers -->
+	<script src="app/controllers/technologyGuidesController.js"></script>
+	
+	<!-- Services -->
+	<script src="app/services/guideFactory.js"></script>
+</body>
+</html>

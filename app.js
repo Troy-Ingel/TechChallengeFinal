@@ -9,6 +9,7 @@ var placesRouter = require('./routes/places');
 var travelRouter = require('./routes/travel');
 var activitiesRouter = require('./routes/activities');
 var tvGuideRouter = require('./routes/tv-guide');
+var techGuideRouter = require('./routes/tech-guides');
 
 var app = express();
 const port = process.env.PORT || 8080;
@@ -24,8 +25,8 @@ app
 	.use('/travel', travelRouter)
 	.use('/activities', activitiesRouter)
 	.use('/tv-guide', tvGuideRouter)
+	.use('/tech-guides', techGuideRouter)
 	.listen(port);
-
 /*
 	
 	Map
