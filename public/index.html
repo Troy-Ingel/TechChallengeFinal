@@ -33,16 +33,16 @@
 			</ul>
 		</div>
 
-		<div class="row" ng-show="!isMobile || activePanel == PANELS.MAP">
-			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="mapContainer">
+		<div class="row">
+			<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="mapContainer" ng-show="!isMobile || activePanel == PANELS.MAP">
 				<div class="text-center" ng-show="loading">
 					<h1 id="loading-indicator">Loading map...</h1>
 				</div>
 				<div id="map" ng-show="!loading"></div>
 				<div ng-include="'app/views/map-legend.html'"></div>
 			</div>
-			<div class="col-lg-4 col-md-4" ng-show="!isMobile">
-				<ul class="nav nav-tabs">
+			<div class="col-lg-4 col-md-4">
+				<ul class="nav nav-tabs" ng-show="!isMobile">
 					<li ng-class="{'active': getCurrentPage() == '/'}"><a href="#!/">Add Activity</a></li>
 					<li ng-class="{'active': getCurrentPage() == '/places'}"><a href="#!places">Places</a></li>
 					<li ng-class="{'active': getCurrentPage() == '/activities'}"><a href="#!activities">Activities</a></li>
