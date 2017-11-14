@@ -2,12 +2,12 @@ angular
 	.module('mainApp')
 	.controller('entryController', entryController);
 
-entryController.$inject = ['$scope', 'CheckInFactory', '$cookies','GoogleMapsFactory'];
+entryController.$inject = ['$scope', 'ActivityFactory', '$cookies','GoogleMapsFactory'];
 
-function entryController($scope, CheckInFactory, $cookies, GoogleMapsFactory){
+function entryController($scope, ActivityFactory, $cookies, GoogleMapsFactory){
 	
 	$scope.data = {};
-	$scope.setStatus = setStatus;
+	$scope.addActivity = addActivity;
 	$scope.updating = false;
 
 	activate();
@@ -15,37 +15,32 @@ function entryController($scope, CheckInFactory, $cookies, GoogleMapsFactory){
 	///////////
 
 	function activate(){
-		$scope.statusSet = $cookies.get('statusSet');
+		// $scope.statusSet = $cookies.get('statusSet');
 
-		if($scope.statusSet){
-			CheckInFactory.getPerson($scope.statusSet).then(function(response){
-				$scope.data.first_name = response.first_name;
-				$scope.data.last_name = response.last_name;
-				$scope.data.status = response.status;
-			});
-		}
+		// if($scope.statusSet){
+		// 	ActivityFactory.getPerson($scope.statusSet).then(function(response){
+		// 		$scope.data.first_name = response.first_name;
+		// 		$scope.data.last_name = response.last_name;
+		// 		$scope.data.status = response.status;
+		// 	});
+		// }
 	}
-	function setStatus(){
+	function addActivity(){
 
-		if($scope.statusSet){
-			CheckInFactory.updateStatus($scope.statusSet, $scope.data.status).then(function(response){
-				$scope.$parent.updateMarkers();
-			});
-		} else{
-			var data = {
-				lat: $scope.$parent.lat,
-				lon: $scope.$parent.lon,
-				address: $scope.$parent.currentAddress,
-				first_name: $scope.data.first_name,
-				last_name: $scope.data.last_name,
-				status: $scope.data.status
-			}
+		// if($scope.statusSet){
+		// 	ActivityFactory.updateStatus($scope.statusSet, $scope.data.status).then(function(response){
+		// 		$scope.$parent.updateMarkers();
+		// 	});
+		// } else{
+			
+		GoogleMapsFactory.geocodeAddress($scope.data.address, function(position){
+			$scope.data.lat = position.lat;
+			$scope.data.lon = position.lng;
 
-			CheckInFactory.addPerson(data).then(function(response){
-				$cookies.put('statusSet', response);
+			ActivityFactory.add($scope.data).then(function(response){
 				$scope.statusSet = true;
 				$scope.$parent.updateMarkers();
 			});
-		}
+		});
 	}
 }

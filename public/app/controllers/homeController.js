@@ -2,9 +2,9 @@ angular
 .module('mainApp')
 .controller('homeController', homeController);
 
-homeController.$inject = ['$window', '$location', '$scope', '$interval', 'GeoLocationFactory', 'GoogleMapsFactory', 'CheckInFactory', 'PlaceFactory'];
+homeController.$inject = ['$window', '$location', '$scope', '$interval', 'GeoLocationFactory', 'GoogleMapsFactory', 'PlaceFactory', 'ActivityFactory'];
 
-function homeController($window, $location, $scope, $interval, GeoLocationFactory, GoogleMapsFactory, CheckInFactory, PlaceFactory){
+function homeController($window, $location, $scope, $interval, GeoLocationFactory, GoogleMapsFactory, PlaceFactory, ActivityFactory){
 	
 	var map = undefined;
 	var markers = [];
@@ -13,7 +13,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 
 	$scope.getCurrentPage = getCurrentPage;
 	$scope.initMap = initMap;
-	$scope.addMarker = addMarker;
 	$scope.showDirections = showDirections;
 	$scope.updateMarkers = updateMarkers;
 
@@ -79,40 +78,6 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 		return $location.path();
 	}
 	function loadMarkers(){
-		// CheckInFactory.getPeople().then(function(response){
-
-		// 	people = response;
-
-		// 	for(let i = 0; i < people.length; i++){
-		// 		if(people[i]){
-
-		// 			let curPerson = people[i];
-
-		// 			let position = {
-		// 				lat: parseFloat(curPerson.lat),
-		// 				lng: parseFloat(curPerson.lon)
-		// 			};
-
-		// 			let status = curPerson.status;
-		// 			let description = curPerson.first_name + ' ' + curPerson.last_name + '\n' + 'Status: ' + getStatusText(curPerson.status);
-		// 			var marker = GoogleMapsFactory.addMarker(position, map, description, '', getMarkerColor(status));
-
-		// 			marker.addListener('click', function(){
-		// 				if(infowindow) infowindow.close();
-
-		// 				infowindow = new google.maps.InfoWindow({
-		// 					content: description
-		// 				});
-
-		// 				infowindow.open(map, this);
-		// 			});
-
-		// 			marker.personID = curPerson.id;
-		// 			markers.push(marker);
-		// 		}
-		// 	}
-		// });
-
 		PlaceFactory.getCenters().then(function(response){
 			for(var i = 0; i < response.length; i++){
 
@@ -157,6 +122,55 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 			}
 
 			$scope.places = response;
+		});
+
+		ActivityFactory.get().then(function(response){
+			for(var i = 0; i < response.length; i++){
+
+				var currentActivity = response[i];
+
+				if(currentActivity.lat && currentActivity.lon){
+
+					var position = {
+						lat: parseFloat(currentActivity.lat),
+						lng: parseFloat(currentActivity.lon)
+					};
+
+					currentActivity.distance = GeoLocationFactory.calculateDistance({
+						lat: $scope.lat,
+						lon: $scope.lon
+					}, {
+						lat: position.lat,
+						lon: position.lng
+					});
+
+					var description = currentActivity.activityName + ', ' + currentActivity.agency;
+					var marker = GoogleMapsFactory.addMarker(position, map, description, '', 'img/green_marker.png');
+
+					marker.activity = currentActivity;
+
+					marker.addListener('click', function(){
+						if(infowindow) infowindow.close();
+
+						infowindow = new google.maps.InfoWindow({
+							content: this.activity.activityName + ', ' + this.activity.agency
+						});
+
+						infowindow.open(map, this);
+
+						var activity = this.activity; 
+						$scope.destination = activity.agency + ', ' + activity.address;
+						$location.path('/directions');
+						$scope.$apply();
+					});
+
+					markers.push(marker);
+				} else{
+					console.error("Lat and lon not found in activity", currentActivity)
+				}
+			}
+
+			$scope.places = response;
 		})
 	};
 	function updateMarkers(){
@@ -170,21 +184,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 
 		markers = [];
 	}
-	function addMarker(name, desc, lat, lon){
-		let initial = name.substring(0, 1).toUpperCase();
-		let position = {lat: parseFloat(lat), lng: parseFloat(lon)};
-
-		var marker = GoogleMapsFactory.addMarker(position, map, name, initial, 'img/blue_marker.png');
-
-		map.setZoom(8);
-		map.setCenter(marker.getPosition());
-
-		markers.push(marker);
-
-		marker.addListener('click', function(){
-			console.log(marker.getPosition());
-		});
-	}
+	
 	function showDirections(legs){
 		if(polyline) polyline.setMap(null);
 

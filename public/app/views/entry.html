@@ -5,35 +5,47 @@
 		<p>Add an activity so that others know about it.</p>
 
 		<div class="mt20">
-			First name:
-			<input ng-readonly="statusSet" ng-model="data.first_name" class="form-control" placeholder="First name">
+			Full name:
+			<input ng-readonly="statusSet" ng-model="data.username" class="form-control" placeholder="Full name">
 		</div>
 
 		<div class="mt20">
-			Last name:
-			<input ng-readonly="statusSet" ng-model="data.last_name" class="form-control" placeholder="Last name">
+			Activity Name:
+			<input ng-readonly="statusSet" ng-model="data.activityName" class="form-control" placeholder="Activity Name">
 		</div>
 
 		<div class="mt20">
-			Current Address:
-			<input ng-model="$parent.currentAddress" class="form-control" placeholder="Current Address" readonly>
+			Address:
+			<input ng-readonly="statusSet" ng-model="data.address" class="form-control" placeholder="Activity Address">
 		</div>
 
 		<div class="mt20">
-			Your status:
-			<select class="form-control" ng-model="data.status">
-				<option value="G">Safe</option>
-				<option value="I">Might Need Help</option>
-				<option value="B">Need Help</option>
-			</select>
+			Activity Date:
+			<input ng-readonly="statusSet" ng-model="data.date" class="form-control" placeholder="Activity Date">
 		</div>
 
-		<button ng-disabled="!$parent.lat || !$parent.lon || !data.first_name || !data.last_name" class="btn btn-primary mt20" ng-click="setStatus()">Set Status</button>
-	</div>
+		<div class="mt20">
+			Start Time:
+			<input ng-readonly="statusSet" ng-model="data.startTime" class="form-control" placeholder="Start time">
+		</div>
 
-	<div class="alert alert-success" ng-show="statusSet && !updating">
-		<h4>Status already set.</h4>
-		<p>If you require help. Emergency teams will find you soon.</p>
+		<div class="mt20">
+			End Time:
+			<input ng-readonly="statusSet" ng-model="data.endTime" class="form-control" placeholder="End time">
+		</div>
+
+		<div class="mt20">
+			Description:
+			<input ng-readonly="statusSet" ng-model="data.description" class="form-control" placeholder="Description">
+		</div>
+
+		<div class="mt20">
+			Agency Name:
+			<input ng-readonly="statusSet" ng-model="data.agency" class="form-control" placeholder="Description">
+		</div>
+
+<!-- ng-disabled="!$parent.lat || !$parent.lon || !data.first_name || !data.last_name" -->
+		<button class="btn btn-primary mt20" ng-click="addActivity()">Set Status</button>
 	</div>
 
 	<button ng-show="statusSet && !updating" class="btn btn-default" ng-click="updating=true">Update Status</button>

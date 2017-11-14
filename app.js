@@ -1,5 +1,6 @@
 var express = require('express');
 var morgan = require('morgan');
+var bodyParser = require('body-parser');
 
 // Import routes
 var directionsRouter = require('./routes/directions');
@@ -13,6 +14,8 @@ const port = process.env.PORT || 8080;
 
 app
 	.use(morgan('dev'))
+	.use(bodyParser.json())
+	.use(bodyParser.urlencoded({ extended: false }))
 	.use(express.static('public'))
 	.use('/directions', directionsRouter)
 	.use('/geocode', geocodeRouter)

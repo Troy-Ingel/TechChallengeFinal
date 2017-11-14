@@ -16,22 +16,10 @@ router.get('/create', function(req, res){
 router.post('/', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
-		
-		var myobj = { 
-			name: "Jake Cyr", 
-			lat: 41.2185485,
-			lon: -73.1526622,
-			activityName: 'Bingo',
-			date: '11/13/2017',
-			timeStart: 18,
-			timeEnd: 19,
-			description: '',
-			agency: ''
-		};
 
-		db.collection("activities").insertOne(myobj, function(err, res) {
+		db.collection("activities").insertOne(req.body, function(err, res) {
 			if (err) throw err;
-			console.log("1 document inserted");
+			console.log("1 document inserted", res);
 			db.close();
 		});
 	});

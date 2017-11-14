@@ -26,4 +26,7 @@ function ActivityFactory($http){
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
 	}
+	function getOne(id){
+		// return $http.get()
+	}
 }
