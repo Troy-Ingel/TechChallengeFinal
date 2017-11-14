@@ -157,6 +157,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 						$scope.destination = place.town_city + ', ' + place.st + ' ' + place.tel;
 						$location.path('/directions');
 						$scope.$apply();
+						$scope.activePanel = PANELS.DIRECTIONS;
 					});
 
 					markers.push(marker);

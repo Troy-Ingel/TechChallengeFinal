@@ -24,7 +24,7 @@
 <body>
 	<div ng-controller="homeController">
 		<!-- Only displayed on mobile devices -->
-		<div class="btn-group mb20" ng-show="!isMobile">
+		<div class="btn-group mb20" ng-show="isMobile">
 			<ul class="nav nav-tabs">
 				<li ng-class="{active: activePanel == PANELS.MAP}"><a ng-click="activePanel = PANELS.MAP" href="#!/">Map</a></li>
 				<li ng-class="{active: activePanel == PANELS.ENTRY}"><a ng-click="activePanel = PANELS.ENTRY" href="#!/">Add Activity</a></li>
