@@ -2,7 +2,7 @@ var express = require('express')
 var router = express.Router();
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/finalChallenge";
+var url = "mongodb://heroku_9pk3cb2k:e00cfbbg2i3boo1fagtg6ksmtt@ds257495.mlab.com:57495/heroku_9pk3cb2k";
 
 router.get('/create', function(req, res){
 	db.createCollection("activities", function(err, res) {
@@ -13,7 +13,7 @@ router.get('/create', function(req, res){
 	});
 })
 
-router.post('/', function(req, res){
+.post('/', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 
@@ -25,7 +25,7 @@ router.post('/', function(req, res){
 	});
 })
 
-router.get('/', function(req, res){
+.get('/', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 
@@ -36,6 +36,6 @@ router.get('/', function(req, res){
 		});
 	});
 
-})
+});
 
 module.exports = router;

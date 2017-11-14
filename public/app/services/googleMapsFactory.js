@@ -33,7 +33,8 @@ function GoogleMapsFactory($http){
 			map: map,
 			title: title,
 			label: label,
-			icon: icon
+			icon: icon,
+			// draggable:true
 		});
 
 		return marker;
