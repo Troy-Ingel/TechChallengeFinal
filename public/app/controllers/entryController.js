@@ -6,12 +6,28 @@ entryController.$inject = ['$scope', 'ActivityFactory', '$cookies','GoogleMapsFa
 
 function entryController($scope, ActivityFactory, $cookies, GoogleMapsFactory){
 	
-	$scope.data = {};
 	$scope.addActivity = addActivity;
 	$scope.updating = false;
 
+	activate();
+
 	///////////
 
+	function activate(){
+		resetData();
+	}
+	function resetData(){
+		$scope.data = {
+			username: '',
+			activityName: '',
+			address: '',
+			date: '',
+			startTime: '',
+			endTime: '',
+			description: '',
+			agency: ''
+		};
+	}
 	function addActivity(){
 		GoogleMapsFactory.geocodeAddress($scope.data.address, function(position){
 			$scope.data.lat = position.lat;
