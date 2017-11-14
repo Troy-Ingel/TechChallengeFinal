@@ -18,7 +18,7 @@ function activityController($scope, $location, ActivityFactory){
 		});
 	}
 	function showDirections(activity){
-		$scope.$parent.destination = activity.lat + ', ' + activity.lng;
+		$scope.$parent.destination = activity.agency + ', ' + activity.address;
 		$location.path('/directions');
 	}
 }
