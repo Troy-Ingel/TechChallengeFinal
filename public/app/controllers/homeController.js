@@ -136,6 +136,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 					// and the user is redirected to a dirctions page, which shows directions
 					// from their current loaction to the marker location.
 					marker.addListener('click', function(){
+						$scope.activePanel = $scope.PANELS.DIRECTIONS;
 						if(infowindow) infowindow.close();
 
 						infowindow = new google.maps.InfoWindow({
@@ -186,6 +187,7 @@ function homeController($window, $location, $scope, $interval, GeoLocationFactor
 					// and the user is redirected to a dirctions page, which shows directions
 					// from their current loaction to the marker location.
 					marker.addListener('click', function(){
+						$scope.activePanel = $scope.PANELS.DIRECTIONS;
 						if(infowindow) infowindow.close();
 
 						infowindow = new google.maps.InfoWindow({
