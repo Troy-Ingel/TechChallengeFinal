@@ -13,6 +13,7 @@ function technologyGuidesController($scope, GuideFactory){
 	$scope.components = {'posts':1, 'entry':1, 'post':1};
 
 	$scope.addPost = addPost;
+	$scope.viewPost = viewPost;
 	$scope.viewComponent = viewComponent;
 
 	activate();
@@ -20,6 +21,9 @@ function technologyGuidesController($scope, GuideFactory){
 	///////////
 	function activate(){
 		getPosts();
+	}
+	function viewPost(post){
+		console.log(post)
 	}
 	function viewComponent(component){
 		if($scope.components[component]) $scope.componentToShow = component;

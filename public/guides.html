@@ -9,8 +9,6 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/styles.css">
 
-	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-
 	<script src="lib/angular.min.js"></script>
 	<script src="lib/angular-cookies.min.js"></script>
 	<script src="lib/angular-routes.min.js"></script>
@@ -18,8 +16,6 @@
 	<script src="lib/jquery.min.js"></script>
 	<script src="lib/bootstrap.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.js"></script>
-
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI"></script>
 </head>
 <body>
 	<div ng-controller="technologyGuidesController">
@@ -47,21 +43,22 @@
 			<div ng-show="componentToShow=='posts'">
 				<div ng-repeat="post in posts">
 					<h4>{{post.title}} <small>{{post.author}}</small></h4>
-					<p>{{post.body}}</p>
-					<button ng-click="selectedPost=post;viewComponent('post')">Show Post</button>
+					<p>{{post.body.substring(0, 300)}}...</p>
+					<button class="btn btn-primary" ng-click="showPost(post)">Show Post</button>
 					<hr>
 				</div>
 			</div>
 
 			{{selectedPost}}
 
-			<div ng-show="componentToShow=='post'">
+			<div >
 				post
 				<h2>{{selectedPost.title}} <small>{{selectedPost.author}}</small></h2>
 				<p>{{selectedPost.body}}</p>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- Main Angular Module -->
 	<script src="app/app.js"></script>
