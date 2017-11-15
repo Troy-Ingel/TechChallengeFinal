@@ -16,17 +16,16 @@ function ActivityFactory($http){
 
 	////////////////////
 
+	// get all activities from the server
 	function get(){
 		return $http.get('/activities')
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
 	}
+	// post new activity to the server
 	function add(data){
 		return $http.post('/activities', data)
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
-	}
-	function getOne(id){
-		// return $http.get()
 	}
 }

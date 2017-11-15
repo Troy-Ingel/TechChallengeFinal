@@ -13,9 +13,6 @@ function GoogleMapsFactory($http){
 		addListener: addListener,
 		addMarkerListener: addMarkerListener,
 		geocodeAddress: geocodeAddress,
-		getTransitDirections: getTransitDirections,
-		getDrivingDirections: getDrivingDirections,
-		getWalkingDirections: getWalkingDirections,
 		getDirections: getDirections,
 		reverseGeocode: reverseGeocode
 	};
@@ -34,18 +31,19 @@ function GoogleMapsFactory($http){
 			title: title,
 			label: label,
 			icon: icon,
-			// draggable:true
 		});
 
 		return marker;
 	}
+	// this functions sets up a listener on the map, which is triggered by the specified event
 	function addListener(map, event, callback){
 		map.addListener(event, callback);
 	}
-
+	// this functions sets up a listener on a map marker, which is triggered by the specified event
 	function addMarkerListener(marker, event, callback){
 		marker.addListener(event, callback);
 	}
+	// this functions gets the geocode of an address
 	function geocodeAddress(address, callback){
 		geocoder = new google.maps.Geocoder();
 
@@ -60,13 +58,8 @@ function GoogleMapsFactory($http){
 
 	//////// Transit ////////
 
-	function getTransitDirections(origin, destination){
-		var url = '/directions/?mode=transit&origin=' + origin + '&destination=' + destination;
-
-		return $http.get(url)
-			.then((res)=>res.data)
-			.catch((err)=>console.error(err));
-	}
+	// get directions from the origin to destination. The mode specified 
+	// will be driving, walking or transit.
 	function getDirections(origin, destination, mode){
 		var url = '/directions?mode=' + mode + '&origin=' + origin + '&destination=' + destination;
 
@@ -74,20 +67,7 @@ function GoogleMapsFactory($http){
 			.then((res)=>res.data.routes)
 			.catch((err)=>console.error(err));
 	}
-	function getDrivingDirections(origin, destination){
-		var url = '/directions/?mode=driving&origin=' + origin + '&destination=' + destination;
-
-		return $http.get(url)
-			.then((res)=>res.data)
-			.catch((err)=>console.error(err));
-	}
-	function getWalkingDirections(origin, destination){
-		var url = '/directions/?mode=walking&origin=' + origin + '&destination=' + destination;
-
-		return $http.get(url)
-			.then((res)=>res.data)
-			.catch((err)=>console.error(err));
-	}
+	// find the location details from lat and long
 	function reverseGeocode(lat, long){
 		var url = '/directions/geocode?latlng=' + lat.toString() + ',' + long.toString();
 

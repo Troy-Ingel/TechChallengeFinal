@@ -15,6 +15,7 @@ function PlaceFactory($http){
 
 	////////////////////
 
+	// return all of the senior centers in Connecticut
 	function getCenters(){
 		return $http.get('/places/centers')
 			.then((res)=>res.data)

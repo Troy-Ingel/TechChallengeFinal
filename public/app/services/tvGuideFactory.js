@@ -15,6 +15,7 @@ function TVGuideFactory($http){
 
 	////////////////////
 
+	// get the current tv listings
 	function getCurrent(){
 		return $http.get('/tv-guide/current')
 			.then((res)=>res.data)

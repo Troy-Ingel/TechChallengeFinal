@@ -16,6 +16,7 @@ function directionsController($scope, GoogleMapsFactory){
 	function activate(){
 
 	}
+
 	function getDirections(){
 		GoogleMapsFactory.getDirections($scope.$parent.currentAddress, $scope.$parent.destination, $scope.mode).then(function(response){
 			if(response.length > 0){

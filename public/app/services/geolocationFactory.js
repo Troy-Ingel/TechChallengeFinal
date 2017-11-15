@@ -17,6 +17,7 @@ function GeoLocationFactory($http){
 
 	////////////////////
 
+	// get current geolocation
 	function getLocation(callback) {
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(callback);
@@ -31,6 +32,8 @@ function GeoLocationFactory($http){
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
 	}
+	// calculate the distance between two points, where the input
+	// is given in lat and long
 	function calculateDistance(latlng1, latlng2){
 		var R = 6371e3; // metres
 		var φ1 = toRadians(latlng1.lat);
@@ -47,7 +50,7 @@ function GeoLocationFactory($http){
 
 		return d/1000;
 	}
-
+	// convert an angle to radians
 	function toRadians (angle) {
 		return angle * (Math.PI / 180);
 	}
