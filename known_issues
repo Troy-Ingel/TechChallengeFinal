@@ -8,8 +8,6 @@ map is kind of big, maybe margins
 
 travel route is never used
 
-directions page not showing on mobile when a marker is clicked
-
 app.config has commented out code, do we need?
 
 tv guide does not appear to be updating - investigate
