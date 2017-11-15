@@ -4,7 +4,7 @@
 	<title>Technology Guides</title>
 
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/styles.css">
@@ -27,10 +27,12 @@
 
 			<h2 class="page-header">
 				Technology Guides
-				<button ng-click="showPostEntry=!showPostEntry" class="btn btn-primary pull-right">Create Guide</button>
+				<button ng-click="viewComponent('entry')" class="btn btn-primary pull-right">Create Guide</button>
 			</h2>
 
-			<div ng-show="showPostEntry">
+			<div ng-show="componentToShow=='entry'">
+				<button ng-click="componentToShow='posts'" class="btn btn-default">View all posts</button>
+
 				Add guide
 
 				<input placeholder="Title" class="form-control" ng-model="data.title">
@@ -42,12 +44,21 @@
 				<button ng-click="addPost()" class="btn btn-primary">Add Post</button>
 			</div>
 
-			<div ng-show="!showPostEntry">
+			<div ng-show="componentToShow=='posts'">
 				<div ng-repeat="post in posts">
 					<h4>{{post.title}} <small>{{post.author}}</small></h4>
 					<p>{{post.body}}</p>
+					<button ng-click="selectedPost=post;viewComponent('post')">Show Post</button>
 					<hr>
 				</div>
+			</div>
+
+			{{selectedPost}}
+
+			<div ng-show="componentToShow=='post'">
+				post
+				<h2>{{selectedPost.title}} <small>{{selectedPost.author}}</small></h2>
+				<p>{{selectedPost.body}}</p>
 			</div>
 		</div>
 	</div>
