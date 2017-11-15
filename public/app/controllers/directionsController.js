@@ -16,7 +16,7 @@ function directionsController($scope, GoogleMapsFactory){
 	function activate(){
 
 	}
-
+	// get directions based on current address, destination address and mode of transportation
 	function getDirections(){
 		GoogleMapsFactory.getDirections($scope.$parent.currentAddress, $scope.$parent.destination, $scope.mode).then(function(response){
 			if(response.length > 0){

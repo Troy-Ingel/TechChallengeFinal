@@ -19,9 +19,12 @@ function technologyGuidesController($scope, GuideFactory){
 	activate();
 
 	///////////
+
+	// set up initial values
 	function activate(){
 		getPosts();
 	}
+	// TODO
 	function viewPost(post){
 		console.log(post)
 	}
