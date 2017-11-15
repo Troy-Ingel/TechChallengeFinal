@@ -1,21 +1,24 @@
+// import modules
 var express = require('express')
 var router = express.Router();
-
+// connect to deployed database
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://heroku_9pk3cb2k:e00cfbbg2i3boo1fagtg6ksmtt@ds257495.mlab.com:57495/heroku_9pk3cb2k";
+const url = "mongodb://heroku_9pk3cb2k:e00cfbbg2i3boo1fagtg6ksmtt@ds257495.mlab.com:57495/heroku_9pk3cb2k";
 
+// endpoint for posting a new guide
 router.post('/', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
 
 		db.collection("guides").insertOne(req.body, function(err, res) {
 			if (err) throw err;
-			console.log("1 document inserted", res);
+			console.log("guide saved to database");
 			db.close();
 		});
 	});
 })
 
+// endpoint for retrieving all of the stored guides
 .get('/', function(req, res){
 	MongoClient.connect(url, function(err, db) {
 		if (err) throw err;
