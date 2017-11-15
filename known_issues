@@ -1,0 +1,11 @@
+refresh on directions page shows empty directions
+
+in directions page, if you get directions, and click on another location, the end destination changes but not the directions
+
+when you leave directions, path still highlighted, even though you cant get back to directions
+
+map is kind of big, maybe margins
+
+travel route is never used
+
+directions page not showing on mobile when a marker is clicked
