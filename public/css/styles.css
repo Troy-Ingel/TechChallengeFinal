@@ -32,3 +32,4 @@
 .mb20{
   margin-bottom:20px;
 }
+.panel-scroll { overflow-x: scroll; }
