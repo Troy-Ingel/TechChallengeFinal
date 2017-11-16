@@ -1,52 +1,52 @@
-<div style="padding: 0 20px">
+<div class="container-fluid">
 	<h2>Add Activity</h2>
-	
-	<div ng-show="!statusSet || updating">
-		<p>Add an activity so that others know about it.</p>
+	<p>Add an activity to inform others around you.</p>
 
+	<form name="activityEntryForm">
 		<div class="mt20">
-			Your name:
-			<input ng-readonly="statusSet" ng-model="data.username" class="form-control" placeholder="Full name">
+			Enter your name (optional):
+			<input name="username" ng-model="vm.data.username" class="form-control" placeholder="Full name">
 		</div>
 
 		<div class="row mt20">
 			<div class="col-lg-6 col-md-6">
-				Agency Name:
-				<input ng-readonly="statusSet" ng-model="data.agency" class="form-control" placeholder="Description">
+				Enter name of Agency:
+				<input name="agency" ng-model="vm.data.agency" class="form-control" placeholder="Agency name" required>
 			</div>
 			<div class="col-lg-6 col-md-6">
-				Activity Name:
-				<input ng-readonly="statusSet" ng-model="data.activityName" class="form-control" placeholder="Activity Name">
+				Enter activity name:
+				<input name="activity" ng-model="vm.data.activityName" class="form-control" placeholder="Activity Name" required>
 			</div>
 		</div>
 
 		<div class="mt20">
 			Address:
-			<input ng-readonly="statusSet" ng-model="data.address" class="form-control" placeholder="Activity Address">
+			<input name="address" ng-model="vm.data.address" class="form-control" placeholder="Activity Address" required>
+		</div>
+
+		<div class="row mt20">
+			<div class="col-lg-12 col-md-12">
+				Activity Date:
+				<input name="date" ng-model="vm.data.date" class="form-control" type="date" required>
+			</div>
 		</div>
 
 		<div class="row mt20">
 			<div class="col-lg-4 col-md-4">
-				Activity Date:
-			<input ng-readonly="statusSet" ng-model="data.date" class="form-control" type ="date">
-			</div>
-			<div class="col-lg-4 col-md-4">
 				Start Time:
-				<input ng-readonly="statusSet" ng-model="data.startTime" class="form-control" type ="time">
+				<input name="startTime" ng-model="vm.data.startTime" class="form-control" type="time" required>
 			</div>
 			<div class="col-lg-4 col-md-4">
 				End Time:
-				<input ng-readonly="statusSet" ng-model="data.endTime" class="form-control" type ="time">	
+				<input name="endTime" ng-model="vm.data.endTime" class="form-control" type="time" required>	
 			</div>
 		</div>
 
 		<div class="mt20">
-			Description:
-			<input ng-readonly="statusSet" ng-model="data.description" class="form-control" placeholder="Description">
+			Description (optional):
+			<input name="description" ng-model="vm.data.description" class="form-control" placeholder="Description">
 		</div>
 
-		<button ng-disabled="!data.activityName || !data.address || !data.date || !data.startTime || !data.endTime" class="btn btn-primary mt20" ng-click="addActivity()">Set Status</button>
-	</div>
-
-	<button ng-show="statusSet && !updating" class="btn btn-default" ng-click="updating=true">Update Status</button>
+		<button ng-disabled="activityEntryForm.$invalid" class="btn btn-primary mt20" ng-click="vm.addActivity()">Add Activity</button>
+	</form>
 </div>

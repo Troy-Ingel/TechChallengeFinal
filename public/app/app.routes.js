@@ -7,7 +7,8 @@ routeConfigSettings.$inject = ['$routeProvider'];
 function routeConfigSettings($routeProvider){
 	$routeProvider.when('/', {
 		templateUrl: 'app/views/entry.html',
-		controller: 'entryController'
+		controller: 'entryController',
+		controllerAs: 'vm'
 	}).when('/places', {
 		templateUrl: 'app/views/places.html',
 		controller: 'placesController'

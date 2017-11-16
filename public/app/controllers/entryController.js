@@ -2,12 +2,15 @@ angular
 	.module('mainApp')
 	.controller('entryController', entryController);
 
-entryController.$inject = ['$scope', 'ActivityFactory', '$cookies','GoogleMapsFactory'];
+entryController.$inject = ['$scope', '$window', 'ActivityFactory','GoogleMapsFactory'];
 
-function entryController($scope, ActivityFactory, $cookies, GoogleMapsFactory){
+function entryController($scope, $window, ActivityFactory, GoogleMapsFactory){
 	
-	$scope.addActivity = addActivity;
-	$scope.updating = false;
+	var vm = this;
+
+	vm.data = {};
+	
+	vm.addActivity = addActivity;
 
 	activate();
 
@@ -19,7 +22,7 @@ function entryController($scope, ActivityFactory, $cookies, GoogleMapsFactory){
 	}
 	// clear the entry form
 	function resetData(){
-		$scope.data = {
+		vm.data = {
 			username: '',
 			activityName: '',
 			address: '',
@@ -32,13 +35,16 @@ function entryController($scope, ActivityFactory, $cookies, GoogleMapsFactory){
 	}
 	// add activity to the view and database
 	function addActivity(){
-		GoogleMapsFactory.geocodeAddress($scope.data.address, function(position){
-			$scope.data.lat = position.lat;
-			$scope.data.lon = position.lng;
+		if(vm.data.address){
+			GoogleMapsFactory.geocodeAddress(vm.data.address, function(position){
+				vm.data.lat = position.lat;
+				vm.data.lon = position.lng;
 
-			ActivityFactory.add($scope.data).then(function(response){
-				$scope.$parent.updateMarkers();
+				ActivityFactory.add(vm.data).then(function(response){
+					$scope.$parent.updateMarkers();
+					$location.path('/activities');
+				});
 			});
-		});
+		}
 	}
 }
