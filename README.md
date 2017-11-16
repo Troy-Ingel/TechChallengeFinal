@@ -20,5 +20,11 @@
 # Using the application
 
 ---- MAIN FEATURES ----
+1. Responsive Layout !! Use it on your laptop, tablet or phone :)
+2. Reminders - Add new reminders, just enter a description and date, and we'll save them with your cookies! 
+   To get rid of a reminder, just click "complete".
+3. Activities Map
+4. Travel Warnings
+5. Tv Guide
+6. Guides
 
-//TODO
