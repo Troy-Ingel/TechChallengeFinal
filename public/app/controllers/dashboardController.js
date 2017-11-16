@@ -18,6 +18,7 @@ function dashboardController($scope, $window, ReminderFactory){
 	// set up initial values
 	function activate(){
 		updateReminders();
+		checkIfMobileDevice();
 	}
 	// control the current page
 	function goToPage(page){
