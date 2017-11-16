@@ -43,16 +43,13 @@
 			<div ng-show="componentToShow=='posts'">
 				<div ng-repeat="post in posts">
 					<h4>{{post.title}} <small>{{post.author}}</small></h4>
-					<p>{{post.body.substring(0, 300)}}...</p>
+					<p>{{post.body}}</p>
 					<button class="btn btn-primary" ng-click="showPost(post)">Show Post</button>
 					<hr>
 				</div>
 			</div>
 
-			{{selectedPost}}
-
-			<div >
-				post
+			<div>
 				<h2>{{selectedPost.title}} <small>{{selectedPost.author}}</small></h2>
 				<p>{{selectedPost.body}}</p>
 			</div>
