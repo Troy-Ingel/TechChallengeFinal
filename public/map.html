@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="mainApp">
 <head>
-	<title>Senior Check</title>
+	<title>Map - Senior Check</title>
 
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,9 +44,9 @@
 			</div>
 			<div class="col-lg-4 col-md-4">
 				<ul class="nav nav-tabs" ng-show="!isMobile">
-					<li ng-class="{'active': getCurrentPage() == '/'}"><a href="#!/">Add Activity</a></li>
 					<li ng-class="{'active': getCurrentPage() == '/places'}"><a href="#!places">Places</a></li>
 					<li ng-class="{'active': getCurrentPage() == '/activities'}"><a href="#!activities">Activities</a></li>
+					<li ng-class="{'active': getCurrentPage() == '/'}"><a href="#!/">Add Activity</a></li>
 				</ul>
 
 				<div ng-view ng-show="!isMobile || activePanel != PANELS.MAP"></div>
