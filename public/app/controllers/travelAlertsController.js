@@ -8,7 +8,7 @@ function travelAlertsController($scope, TravelAlertsFactory, GeoLocationFactory,
 	var infowindow = undefined;
 	var map = undefined;
 	var events = [];
-	$scope.initMap = initMap;
+
 	$scope.addSpacesToCamelCase = addSpacesToCamelCase;
 	$scope.PANELS = {
 		TABLE : {id: 0}, 

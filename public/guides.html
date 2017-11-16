@@ -45,7 +45,6 @@
 				<div ng-repeat="post in posts">
 					<h4>{{post.title}} <small>{{post.author}}</small></h4>
 					<p>{{post.body}}</p>
-					<button class="btn btn-primary" ng-click="showPost(post)">Show Post</button>
 					<hr>
 				</div>
 			</div>
@@ -60,7 +59,6 @@
 
 	<!-- Main Angular Module -->
 	<script src="app/app.js"></script>
-	<script src="app/app.config.js"></script>
 
 	<!-- Controllers -->
 	<script src="app/controllers/technologyGuidesController.js"></script>
