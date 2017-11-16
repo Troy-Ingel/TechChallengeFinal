@@ -10,10 +10,11 @@ const port = process.env.PORT || 8080;
 var directionsRouter = require('./routes/directions');
 var geocodeRouter = require('./routes/geocode');
 var placesRouter = require('./routes/places');
-var travelRouter = require('./routes/travel');
+var travelRouter = require('./routes/travelAlerts');
 var activitiesRouter = require('./routes/activities');
 var tvGuideRouter = require('./routes/tv-guide');
 var techGuideRouter = require('./routes/tech-guides');
+var travelAlertsRouter = require('./routes/travelAlerts');
 
 // set up express middleware
 express()
@@ -28,4 +29,5 @@ express()
 .use('/activities', activitiesRouter)
 .use('/tv-guide', tvGuideRouter)
 .use('/tech-guides', techGuideRouter)
+.use('/travelAlerts', travelAlertsRouter)
 .listen(port, () => console.log('Sever running at localhost:' + port));

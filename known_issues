@@ -6,8 +6,6 @@ when you leave directions, path still highlighted, even though you cant get back
 
 map is kind of big, maybe margins
 
-travel route is never used
-
 app.config has commented out code, do we need?
 
 tv guide does not appear to be updating - investigate
