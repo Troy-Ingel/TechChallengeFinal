@@ -34,21 +34,23 @@
 			<h2 class="page-header">TV Guide</h2>
 
 			<input placeholder="Search for anything..." class="form-control" ng-model="search">
-
-			<table class="table">
-				<thead>
-					<th>Station</th>
-					<th ng-repeat="time in listings[0].ProgramSchedules">{{secondsToDate(time.StartTime)}}</th>
-				</thead>
-				<tbody>
-					<tr ng-repeat="listing in listings | filter: search">
-						<td>{{listing.Channel.FullName}}</td>
-						<td ng-repeat="program in listing.ProgramSchedules">
-							{{program.Title}}
-						</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="panel-scroll">
+				<table class="table">
+					<thead>
+						<th>Station</th>
+						<th ng-repeat="time in listings[0].ProgramSchedules">{{secondsToDate(time.StartTime)}}</th>
+					</thead>
+					<tbody>
+						<tr ng-repeat="listing in listings | filter: search">
+							<td>{{listing.Channel.FullName}}</td>
+							<td ng-repeat="program in listing.ProgramSchedules">
+								{{program.Title}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
 		</div>
 	</div>
 
