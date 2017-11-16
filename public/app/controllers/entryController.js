@@ -13,9 +13,11 @@ function entryController($scope, ActivityFactory, $cookies, GoogleMapsFactory){
 
 	///////////
 
+	// set up initial values
 	function activate(){
 		resetData();
 	}
+	// clear the entry form
 	function resetData(){
 		$scope.data = {
 			username: '',
@@ -28,6 +30,7 @@ function entryController($scope, ActivityFactory, $cookies, GoogleMapsFactory){
 			agency: ''
 		};
 	}
+	// add activity to the view and database
 	function addActivity(){
 		GoogleMapsFactory.geocodeAddress($scope.data.address, function(position){
 			$scope.data.lat = position.lat;

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="mainApp">
+<head>
+	<title>Travel Alerts</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/styles.css">
+
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+	<script src="lib/angular.min.js"></script>
+	<script src="lib/angular-cookies.min.js"></script>
+	<script src="lib/angular-routes.min.js"></script>
+	<script src="lib/dirPagination.js"></script>
+	<script src="lib/jquery.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.js"></script>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI"></script>
+</head>
+<body>
+	<div ng-controller="travelAlertsController">
+		<div ng-include="'app/views/navigation.html'"></div>
+		<div class="container">
+
+			<a href="index.html">
+				<span class="glyphicon glyphicon-arrow-left"></span>
+				Back to Dashboard
+			</a>
+			
+			<h2 class="page-header">Travel Warnings</h2>
+
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+				<!-- <button ng-click="activePanel = PANELS.MAP;" ng-show="activePanel == PANELS.TABLE">Map</button>
+					<button ng-click="activePanel = PANELS.TABLE;" ng-show="activePanel == PANELS.MAP">Table</button> -->
+					<div class="panel panel-primary">
+
+						<div class="panel-heading">Events</div>
+						<div class="panel-body panel-scroll">
+							<input placeholder="Search for anything..." class="form-control" ng-model="search">
+							<div ng-show="loading">
+								<h1>Loading table...</h1>
+							</div>
+							<table class="table" ng-show="events.length > 0 && activePanel == PANELS.TABLE">
+								<thead>
+									<th>Highway</th>
+									<th>Location</th>
+									<th>Event</th>
+									<th>Description</th>
+									<th>Last Update</th>
+								</thead>
+								<tbody>
+									<tr ng-repeat="event in events | filter: search">
+										<td>{{event.RoadwayName}}</td>
+										<td>{{event.Location}}</td>
+										<td>{{addSpacesToCamelCase(event.EventType)}}</td>
+										<td>{{event.Description}}</td>
+										<td>{{event.LastUpdated}}</td>
+									</tr>
+								</tbody>
+							</table>
+							<div id="map" ></div>
+							<div class="alert alert-warning" ng-show="events.length == 0">
+								<h4>No events at this time</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+					<div class="panel panel-primary">
+						<div class="panel-heading">Alerts</div>
+						<div class="panel-body">
+							<div ng-repeat="alert in alerts" ng-cloak ng-show="alerts.length > 0">
+								<p>{{alert.Message}}</p>
+								<hr>
+							</div>
+							<div class="alert alert-warning" ng-show="alerts.length == 0">
+								<h4>No alerts at this time</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Main Angular Module -->
+		<script src="app/app.js"></script>
+		<script src="app/app.config.js"></script>
+
+		<!-- Controllers -->
+		<script src="app/controllers/travelAlertsController.js"></script>
+
+		<!-- Services -->
+		<script src="app/services/travelAlertsFactory.js"></script>
+		<script src="app/services/googleMapsFactory.js"></script>
+		<script src="app/services/geolocationFactory.js"></script>
+	</body>
+	</html>

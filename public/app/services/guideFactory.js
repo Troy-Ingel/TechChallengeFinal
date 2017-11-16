@@ -16,11 +16,13 @@ function GuideFactory($http){
 
 	////////////////////
 
+	// get all the saved tech guides from the server
 	function get(){
 		return $http.get('/tech-guides')
 			.then((res)=>res.data)
 			.catch((err)=>console.error(err));
 	}
+	// post a new tech guide to the server
 	function add(data){
 		return $http.post('/tech-guides', data)
 			.then((res)=>res.data)

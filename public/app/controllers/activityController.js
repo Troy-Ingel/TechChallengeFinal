@@ -12,11 +12,13 @@ function activityController($scope, $location, ActivityFactory){
 
 	///////////
 
+	// set up initial values
 	function activate(){
 		ActivityFactory.get().then(function(response){
 			$scope.activities = response;
 		});
 	}
+	// show the directions page
 	function showDirections(activity){
 		$scope.$parent.destination = activity.agency + ', ' + activity.address;
 		$location.path('/directions');
