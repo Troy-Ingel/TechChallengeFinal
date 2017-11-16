@@ -23,8 +23,8 @@
 1. Responsive Layout !! Use it on your laptop, tablet or phone :)
 2. Reminders - Add new reminders, just enter a description and date, and we'll save them with your cookies! 
    To get rid of a reminder, just click "complete".
-3. Activities Map
-4. Travel Warnings
-5. Tv Guide
-6. Guides
+3. Activities Map - shows activities that others have added, as well as all of the senior centers in CT. Click on any marker on the map to get directions to that marker.
+4. Travel Warnings - Show all travel events and travel alerts reported in CT.
+5. Tv Guide - Show all of the current TV listings.
+6. Guides - Users can add guides, or view guides that others have posted.
 
