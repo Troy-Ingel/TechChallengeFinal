@@ -44,12 +44,12 @@
 					<div class="panel panel-primary">
 
 						<div class="panel-heading">Events</div>
-						<div class="panel-body">
+						<div class="panel-body panel-scroll">
 							<input placeholder="Search for anything..." class="form-control" ng-model="search">
 							<div ng-show="loading">
 								<h1>Loading table...</h1>
 							</div>
-							<table class="table panel-scroll" ng-show="events.length > 0 && activePanel == PANELS.TABLE">
+							<table class="table" ng-show="events.length > 0 && activePanel == PANELS.TABLE">
 								<thead>
 									<th>Highway</th>
 									<th>Location</th>
