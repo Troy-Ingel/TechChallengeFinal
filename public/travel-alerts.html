@@ -20,16 +20,11 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.js"></script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKWd6bBOs6KH10TcE5729ZTWeUdrIdyLI"></script>
-	<style>
-	#flex { display: flex; flex-direction: column; }
-	#a { order: 2; }
-	#b { order: 1; }
-	</style>
 </head>
 <body>
 	<div ng-controller="travelAlertsController">
 		<div ng-include="'app/views/navigation.html'"></div>
-		<div id="flex" class="container">
+		<div class="container">
 
 			<a href="index.html">
 				<span class="glyphicon glyphicon-arrow-left"></span>
@@ -38,7 +33,7 @@
 			
 			<h2 class="page-header">Travel Warnings</h2>
 
-			<div id="a" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+			<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 				<!-- <button ng-click="activePanel = PANELS.MAP;" ng-show="activePanel == PANELS.TABLE">Map</button>
 					<button ng-click="activePanel = PANELS.TABLE;" ng-show="activePanel == PANELS.MAP">Table</button> -->
 					<div class="panel panel-primary">
@@ -74,7 +69,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="b" class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
+				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" >
 					<div class="panel panel-primary">
 						<div class="panel-heading">Alerts</div>
 						<div class="panel-body">
