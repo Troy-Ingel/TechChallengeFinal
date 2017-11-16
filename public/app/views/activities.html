@@ -5,8 +5,7 @@
 		<tbody>
 			<tr ng-repeat="activity in activities">
 				<td>{{activity.activityName}}</td>
-				<td>{{activity.date}}</td>
-				<td>{{activity.timeStart}}-{{activity.timeEnd}}</td>
+				<td>{{activity.date | date }}</td>
 				<td>
 					<button ng-disabled="activity.onMap" class="btn btn-danger" ng-click="showDirections(activity);activity.onMap=true;">Go</button>
 				</td>
