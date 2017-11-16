@@ -41,7 +41,7 @@
 			<div id="a" class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 				<!-- <button ng-click="activePanel = PANELS.MAP;" ng-show="activePanel == PANELS.TABLE">Map</button>
 					<button ng-click="activePanel = PANELS.TABLE;" ng-show="activePanel == PANELS.MAP">Table</button> -->
-					<div class="panel panel-primary panel-scroll">
+					<div class="panel panel-primary">
 
 						<div class="panel-heading">Events</div>
 						<div class="panel-body">
@@ -49,7 +49,7 @@
 							<div ng-show="loading">
 								<h1>Loading table...</h1>
 							</div>
-							<table class="table" ng-show="events.length > 0 && activePanel == PANELS.TABLE">
+							<table class="table panel-scroll" ng-show="events.length > 0 && activePanel == PANELS.TABLE">
 								<thead>
 									<th>Highway</th>
 									<th>Location</th>
