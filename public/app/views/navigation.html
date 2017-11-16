@@ -49,9 +49,12 @@
                         </div>
                         <table class="table" ng-show="reminders && reminders.length > 0">
                             <tbody>
-                                <tr ng-repeat="reminder in reminders">
+                                <tr ng-repeat="reminder in reminders | orderBy: date">
                                     <td>
                                         {{reminder.name}}
+                                    </td>
+                                    <td>
+                                        {{reminder.date | date: "MM/dd/y" }}
                                     </td>
                                     <td>
                                         <a href="" ng-click="deleteReminder(reminder.name)" class="label label-success">Complete</a>

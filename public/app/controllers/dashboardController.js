@@ -32,6 +32,7 @@ function dashboardController($scope, $window, ReminderFactory){
 	function addReminder(){
 		if($scope.data.name && $scope.data.date){
 			ReminderFactory.add($scope.data);
+			$scope.data = {};
 			updateReminders();
 		}
 	}
